@@ -37,13 +37,16 @@ class User(db.Model):
         """Generates the auth token"""
         try:
             payload = {
-                'exp': datetime.datetime.utcnow() + datetime.timedelta(1),
+                'exp': datetime.datetime.utcnow() + datetime.timedelta(
+                    days=current_app.config.get('TOKEN_EXPIRATION_DAYS'),
+                    seconds=current_app.config.get('TOKEN_EXPIRATION_SECONDS')
+                ),
                 'iat': datetime.datetime.utcnow(),
-                'sub': 1
+                'sub': user_id
             }
             return jwt.encode(
                 payload,
-                "TEST",
+                current_app.config.get('SECRET_KEY'),
                 algorithm='HS256'
             )
         except Exception as e:
