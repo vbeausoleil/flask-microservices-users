@@ -50,7 +50,7 @@ class User(db.Model):
                 algorithm='HS256'
             )
         except Exception as e:
-            print(e)
+            return e
 
     @staticmethod
     def decode_auth_token(auth_token):
