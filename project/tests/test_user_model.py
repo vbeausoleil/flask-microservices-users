@@ -50,12 +50,12 @@ class TestUserModel(BaseTestCase):
         self.assertTrue(isinstance(user.to_json(), dict))
 
     def test_encode_auth_token(self):
-        user = add_user('justatest', 'test@test.com', 'test')
+        user = add_user('justatest', 'testPassword', 'test@test.com')
         auth_token = user.encode_auth_token(user.id)
         self.assertTrue(isinstance(auth_token, str), msg="test failed, produced {0}, should've produced {1}".format(type(auth_token), "bytes"))
 
     def test_decode_auth_token(self):
-        user = add_user('justatest', 'test@test.com', 'test')
+        user = add_user('justatest', 'testPassword', 'test@test.com')
         auth_token = user.encode_auth_token(user.id)
         print(auth_token)
         self.assertTrue(isinstance(auth_token, str), msg="test failed, produced {0}, should've produced {1}".format(type(auth_token), "bytes"))
