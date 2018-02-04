@@ -30,9 +30,8 @@ class User(db.Model):
             'id': self.id,
             'username': self.username,
             'email': self.email,
-            'active': self.active,
-            'admin': self.admin
-}
+            'active': self.active
+        }
 
     def encode_auth_token(self, user_id):
         """Generates the auth token"""
